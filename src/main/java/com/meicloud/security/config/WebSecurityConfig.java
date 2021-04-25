@@ -36,25 +36,31 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
+				// 配置许可的URL，即该过滤器会处理的URL
 				.antMatchers(securityConfig.getPermitUrls()).permitAll()
+				// 其他的URL一律视为认证成功，不会经过这条过滤器链
 				.anyRequest().authenticated()
 				.and()
+				// 禁用跨站点伪造请求
 				.csrf().disable()
-				.sessionManagement().disable()
+				// 启用跨域资源共享
 				.cors()
 				.and()
+				// 添加请求头
 				.headers().addHeaderWriter(
 				new StaticHeadersWriter(Collections.singletonList(
 						new Header("Access-control-Allow-Origin", "*"))))
 				.and()
-				// 会员unionid登录配置
-				.apply(new UnionidLoginConfigurer<>())
+				// 我们自己定义的登录过滤器，不同的登录方式创建不同的登录过滤器，一样的配置方式
+				.apply(new UnionidLoginConfigurer<>(securityConfig))
 				.and()
+				// 登出过滤器
 				.logout()
+				// 登出成功处理器
 				.logoutSuccessHandler(new HttpStatusReturningLogoutSuccessHandler())
-				.and()
+				// 禁用Session会话机制（我们这个demo用的是JWT令牌的方式）
+                .and()
 				.sessionManagement().disable();
-
 	}
 
 	@Override

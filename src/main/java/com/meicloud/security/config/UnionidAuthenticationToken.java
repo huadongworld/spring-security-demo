@@ -15,6 +15,8 @@ import java.util.Collection;
 @Data
 public class UnionidAuthenticationToken extends AbstractAuthenticationToken {
 
+    private String mobile;
+
     private String openId;
 
     private String unionId;
@@ -31,9 +33,10 @@ public class UnionidAuthenticationToken extends AbstractAuthenticationToken {
      * @param authorities the collection of <tt>GrantedAuthority</tt>s for the principal
      *                    represented by this authentication object.
      */
-    public UnionidAuthenticationToken(Collection<? extends GrantedAuthority> authorities, String openId, String unionId, String nickName, String gender, String avatarUrl) {
+    public UnionidAuthenticationToken(Collection<? extends GrantedAuthority> authorities, String openId, String mobile, String unionId, String nickName, String gender, String avatarUrl) {
         super(authorities);
         this.openId = openId;
+        this.mobile = mobile;
         this.unionId = unionId;
         this.nickName = nickName;
         this.gender = gender;

@@ -17,8 +17,10 @@ import org.springframework.security.web.authentication.session.NullAuthenticated
  */
 public class UnionidLoginConfigurer<T extends UnionidLoginConfigurer<T, B>, B extends HttpSecurityBuilder<B>> extends AbstractHttpConfigurer<T, B>  {
 
-	public UnionidLoginConfigurer() {
+	private SecurityConfig securityConfig;
 
+	public UnionidLoginConfigurer(SecurityConfig securityConfig) {
+		this.securityConfig = securityConfig;
 	}
 
 	@Override
@@ -30,7 +32,7 @@ public class UnionidLoginConfigurer<T extends UnionidLoginConfigurer<T, B>, B ex
 		authFilter.setSessionAuthenticationStrategy(new NullAuthenticatedSessionStrategy());
 
 		// 登录成功处理器
-		authFilter.setAuthenticationSuccessHandler(new UnionidLoginSuccessHandler());
+		authFilter.setAuthenticationSuccessHandler(new UnionidLoginSuccessHandler(securityConfig));
 		// 登录失败处理器
 		authFilter.setAuthenticationFailureHandler(new HttpStatusLoginFailureHandler());
 

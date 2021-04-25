@@ -36,8 +36,8 @@ public class SecurityConfig {
     private Long tokenRefreshIntervalInSecond = 864000L;
 
     /**
-     * 配置不被过滤器拦截的URL
+     * 配置许可的URL，即该过滤器会处理的URL
      */
-    protected String[] permitUrls = Arrays.asList("/hello", "/hello/a").toArray(new String[2]);
+    protected String[] permitUrls = Arrays.asList("/user/members:login").toArray(new String[1]);
 
 }
