@@ -21,4 +21,14 @@ public class DemoApplication {
     public String hello() {
         return "Hello Spring Security!";
     }
+
+    @GetMapping("/bye")
+    public String bye() {
+        return "Bye Spring Security!";
+    }
+
+    @GetMapping("/no")
+    public String no() {
+        return "No Spring Security!";
+    }
 }

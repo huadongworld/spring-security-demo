@@ -2,7 +2,7 @@ package com.meicloud.security.handler;
 
 import com.auth0.jwt.algorithms.Algorithm;
 import com.meicloud.security.config.SecurityConfig;
-import com.meicloud.security.dto.MemberLoginDTO;
+import com.meicloud.security.dto.JwtUserLoginDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
@@ -20,13 +20,13 @@ import java.util.Date;
  * @since 2021/4/24 20:20
  */
 @Slf4j
-public class UnionidLoginSuccessHandler implements AuthenticationSuccessHandler{
+public class UserLoginSuccessHandler implements AuthenticationSuccessHandler{
 
 	public static final String HEADER_SET_ACCESS_TOKEN = "Set-Access-Token";
 
 	private SecurityConfig securityConfig;
 
-	public UnionidLoginSuccessHandler(SecurityConfig securityConfig) {
+	public UserLoginSuccessHandler(SecurityConfig securityConfig) {
 		this.securityConfig = securityConfig;
 	}
 
@@ -36,15 +36,16 @@ public class UnionidLoginSuccessHandler implements AuthenticationSuccessHandler{
 
 		// TODO 走到这里说明认证成功，可以组装一些响应头的信息给到客户端，比如生成JWT令牌，或者加一些业务上的需求，比如登录送积分等等
 
+		// =================================================== 示例 ===============================================
+
 		// 这里的逻辑是生成JWT令牌（很多公司也会用Session），将生成的JWT返回给前端
 		Date expiredDate = new Date(System.currentTimeMillis() + securityConfig.getTokenExpireTimeInSecond() * 1000);
 		Algorithm algorithm = Algorithm.HMAC256(securityConfig.getTokenEncryptSalt());
 
-		MemberLoginDTO memberLoginDTO = (MemberLoginDTO) authentication.getPrincipal();
-		String token = memberLoginDTO.sign(algorithm, expiredDate);
+		JwtUserLoginDTO jwtUserLoginDTO = (JwtUserLoginDTO) authentication.getPrincipal();
+		String token = jwtUserLoginDTO.sign(algorithm, expiredDate);
 
-		System.out.println("登录成功处理器...");
-
+		// 设置请求头，将JWT令牌以请求头的方式返回给前端
 		response.addHeader(HEADER_SET_ACCESS_TOKEN, token);
 
 	}

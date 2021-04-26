@@ -1,6 +1,6 @@
 package com.meicloud.security.config;
 
-import com.meicloud.security.provider.UnionidAuthenticationProvider;
+import com.meicloud.security.provider.UserAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -38,7 +38,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				// 配置许可的URL，即该过滤器会处理的URL
 				.antMatchers(securityConfig.getPermitUrls()).permitAll()
-				// 其他的URL一律视为认证成功，不会经过这条过滤器链
+				// 任何经过了身份认证的URL
 				.anyRequest().authenticated()
 				.and()
 				// 禁用跨站点伪造请求
@@ -52,7 +52,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 						new Header("Access-control-Allow-Origin", "*"))))
 				.and()
 				// 我们自己定义的登录过滤器，不同的登录方式创建不同的登录过滤器，一样的配置方式
-				.apply(new UnionidLoginConfigurer<>(securityConfig))
+				.apply(new UserLoginConfigurer<>(securityConfig))
 				.and()
 				// 登出过滤器
 				.logout()
@@ -65,12 +65,12 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.authenticationProvider(unionidAuthenticationProvider());
+		auth.authenticationProvider(userAuthenticationProvider());
 	}
 
 	@Bean
-	protected AuthenticationProvider unionidAuthenticationProvider() throws Exception{
-		return new UnionidAuthenticationProvider();
+	protected AuthenticationProvider userAuthenticationProvider() throws Exception{
+		return new UserAuthenticationProvider();
 	}
 
 	@Override

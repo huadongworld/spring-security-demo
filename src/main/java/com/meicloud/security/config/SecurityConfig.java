@@ -38,6 +38,6 @@ public class SecurityConfig {
     /**
      * 配置许可的URL，即该过滤器会处理的URL
      */
-    protected String[] permitUrls = Arrays.asList("/user/members:login").toArray(new String[1]);
+    protected String[] permitUrls = Arrays.asList("/user/login").toArray(new String[1]);
 
 }

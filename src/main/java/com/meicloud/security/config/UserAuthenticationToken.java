@@ -13,19 +13,17 @@ import java.util.Collection;
  * @since 2021/4/24 20:29
  */
 @Data
-public class UnionidAuthenticationToken extends AbstractAuthenticationToken {
+public class UserAuthenticationToken extends AbstractAuthenticationToken {
 
+    /**
+     * 登录账号/手机号
+     */
     private String mobile;
 
-    private String openId;
-
-    private String unionId;
-
-    private String nickName;
-
-    private String gender;
-
-    private String avatarUrl;
+    /**
+     * 登录密码
+     */
+    private String password;
 
     /**
      * Creates a token with the supplied array of authorities.
@@ -33,23 +31,19 @@ public class UnionidAuthenticationToken extends AbstractAuthenticationToken {
      * @param authorities the collection of <tt>GrantedAuthority</tt>s for the principal
      *                    represented by this authentication object.
      */
-    public UnionidAuthenticationToken(Collection<? extends GrantedAuthority> authorities, String openId, String mobile, String unionId, String nickName, String gender, String avatarUrl) {
+    public UserAuthenticationToken(Collection<? extends GrantedAuthority> authorities, String mobile, String password) {
         super(authorities);
-        this.openId = openId;
         this.mobile = mobile;
-        this.unionId = unionId;
-        this.nickName = nickName;
-        this.gender = gender;
-        this.avatarUrl = avatarUrl;
+        this.password = password;
     }
 
     @Override
     public Object getCredentials() {
-        return unionId;
+        return mobile;
     }
 
     @Override
     public Object getPrincipal() {
-        return unionId;
+        return mobile;
     }
 }
