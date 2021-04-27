@@ -17,8 +17,33 @@ public class DemoApplication {
         SpringApplication.run(DemoApplication.class, args);
     }
 
+    /**
+     * 用户登录才可访问
+     *
+     * @return
+     */
     @GetMapping("/hello")
     public String hello() {
         return "Hello Spring Security!";
+    }
+
+    /**
+     * 用户登录才可访问
+     *
+     * @return
+     */
+    @GetMapping("/bye")
+    public String bye() {
+        return "Bye Spring Security!";
+    }
+
+    /**
+     * 广告接口，匿名用户可以访问
+     *
+     * @return
+     */
+    @GetMapping("/ad")
+    public String no() {
+        return "妈妈再也不用担心我的学习！";
     }
 }
