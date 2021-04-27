@@ -71,6 +71,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 	protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain)
 			throws ServletException, IOException {
 
+		// 是否是白名单URL
 		if (permissiveRequest(request)) {
 			filterChain.doFilter(request, response);
 			return;
@@ -104,6 +105,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter{
 		if (authResult != null) {
 			successfulAuthentication(request, response, filterChain, authResult);
 		} else {
+			// 是否是匿名用户访问的URL
 			if (!anonymityRequest(request)) {
 				unsuccessfulAuthentication(request, response, failed);
 				return;
