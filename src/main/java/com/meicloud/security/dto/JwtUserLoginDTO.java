@@ -23,7 +23,7 @@ public class JwtUserLoginDTO implements Serializable {
 
     public static final String FIELD_USER_ID = "userId";
     public static final String FIELD_MOBILE = "mobile";
-    public static final String FIELD_NICKNAME = "NICKNAME";
+    public static final String FIELD_NICKNAME = "nickname";
 
     public static final String FIELD_ACCESS_TOKEN = "Access-Token";
     public static final String FIELD_SET_ACCESS_TOKEN = "Set-Access-Token";
@@ -61,7 +61,7 @@ public class JwtUserLoginDTO implements Serializable {
      */
     public String sign(Algorithm algorithm, Date expireDate) {
         return JWT.create()
-                .withSubject("subject_" + String.valueOf(userId))
+                .withSubject("subject_" + userId)
                 .withClaim(FIELD_USER_ID, userId)
                 .withClaim(FIELD_NICKNAME, nickname)
                 .withClaim(FIELD_MOBILE, mobile)

@@ -36,8 +36,13 @@ public class SecurityConfig {
     private Long tokenRefreshIntervalInSecond = 864000L;
 
     /**
-     * 配置许可的URL，即该过滤器会处理的URL
+     * 配置白名单（比如登录接口）
      */
     protected String[] permitUrls = Arrays.asList("/user/login").toArray(new String[1]);
+
+    /**
+     * 匿名访问的URL，即不用登录也可以访问（比如广告接口）
+     */
+    protected String[] anonymousUrls = Arrays.asList("/ad").toArray(new String[1]);
 
 }

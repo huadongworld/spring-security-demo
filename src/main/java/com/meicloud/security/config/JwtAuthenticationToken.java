@@ -7,6 +7,7 @@ import org.springframework.security.authentication.AbstractAuthenticationToken;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
+import java.util.Collections;
 
 /**
  * JWT令牌Token
@@ -21,6 +22,11 @@ public class JwtAuthenticationToken extends AbstractAuthenticationToken {
 	private JwtUserLoginDTO jwtUserLoginDTO;
 	private String credentials;
 	private DecodedJWT token;
+
+	public JwtAuthenticationToken(DecodedJWT token) {
+		super(Collections.emptyList());
+		this.token = token;
+	}
 
 	public JwtAuthenticationToken(JwtUserLoginDTO jwtUserLoginDTO, DecodedJWT token, Collection<? extends GrantedAuthority> authorities) {
 		super(authorities);
