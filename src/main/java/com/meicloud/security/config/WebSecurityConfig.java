@@ -28,7 +28,7 @@ import java.util.Collections;
  * @since 2021/4/24 20:10
  */
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(prePostEnabled = true)
+@EnableGlobalMethodSecurity(securedEnabled = true)
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -41,6 +41,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(securityConfig.getPermitUrls()).permitAll()
 				// 匿名访问的URL，即不用登录也可以访问（比如广告接口）
 				.antMatchers(securityConfig.getAnonymousUrls()).permitAll()
+				// 买家接口需要 “ROLE_BUYER” 角色权限才能访问
+				.antMatchers("/buyer/**").hasRole("BUYER")
+//				.anyRequest().access("@rbacService.hasPermission(request, this)")
 				// 其他URL需要认证通过才能访问后台资源
 				.anyRequest().authenticated()
 				.and()

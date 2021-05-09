@@ -10,8 +10,11 @@ import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 
 /**
  * JWT认证 Provider
@@ -40,7 +43,8 @@ public class JwtAuthenticationProvider implements AuthenticationProvider{
 			// 校验令牌的合法性
 			Algorithm algorithm = Algorithm.HMAC256(securityConfig.getTokenEncryptSalt());
 			JwtUserLoginDTO loginResultDTO = JwtUserLoginDTO.fromDecodeJWT(jwt, algorithm);
-			return new JwtAuthenticationToken(loginResultDTO, jwt, null);
+			return new JwtAuthenticationToken(loginResultDTO, jwt,
+					Collections.singletonList(new SimpleGrantedAuthority(loginResultDTO.getRoleName())));
         } catch (Exception e) {
             throw new BadCredentialsException("JWT token verify fail", e);
         }

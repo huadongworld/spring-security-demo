@@ -38,8 +38,12 @@ public class UserAuthenticationProvider implements AuthenticationProvider {
 		// 校验账号密码是否正确，同时返回用户信息
 		UserInfoDTO userInfo = this.checkAndGetUserInfo(token.getMobile(), token.getPassword());
 
+		// 查询用户角色，假设这里是从数据库中查询出的该用户角色
+		String roleName = "ROLE_BUYER";
+
 		// 组装并返回认证成功的 Token
-		JwtUserLoginDTO jwtUserLoginDTO = new JwtUserLoginDTO(userInfo.getUserId(), userInfo.getNickname(), userInfo.getMobile());
+		JwtUserLoginDTO jwtUserLoginDTO = new JwtUserLoginDTO(
+				userInfo.getUserId(), userInfo.getNickname(), userInfo.getMobile(), roleName);
 
 		return new JwtAuthenticationToken(jwtUserLoginDTO, null, null);
 	}
