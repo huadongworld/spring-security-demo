@@ -1,6 +1,7 @@
 package com.meicloud.security.handler;
 
 import com.meicloud.security.exception.LoginAuthenticationException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 
@@ -16,6 +17,7 @@ import java.nio.charset.Charset;
  * @author HuaDong
  * @since 2021/4/24 21:08
  */
+@Slf4j
 public class HttpStatusLoginFailureHandler implements AuthenticationFailureHandler{
 
 	@Override
@@ -33,7 +35,10 @@ public class HttpStatusLoginFailureHandler implements AuthenticationFailureHandl
 		if (exception instanceof LoginAuthenticationException) {
 			LoginAuthenticationException e = (LoginAuthenticationException) exception;
 			response.getWriter().print(e.toJSONString());
+		} else {
+			response.getWriter().print("{\"msg\": \"" + exception.getMessage() + "\"}");
 		}
-		response.getWriter().print("登录异常！");
+
+		log.error(exception.getMessage());
 	}
 }

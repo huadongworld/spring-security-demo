@@ -1,4 +1,4 @@
-package com.meicloud.mall.service;
+package com.meicloud.security.mall.service;
 
 import java.util.Arrays;
 import java.util.List;
@@ -31,7 +31,7 @@ public class RbacServiceImpl implements RbacService {
 			if (StringUtils.equals(((JwtUserLoginDTO) principal).getRoleName(), "ROLE_ADMIN")) {
 				hasPermission = true;
 			} else {
-				// 查询用户角色所拥有权限的所有URL，（这里假设是从数据库或缓存中查的，或直接从保存在JWT中的URL取的）
+				// 查询用户角色所拥有权限的所有URL，这里假设是从数据库或缓存（或者登录的时候可以直接将该角色拥有的权限保存到JWT）中查的
 				List<String> urls = Arrays.asList("/business/stores", "/business/sellers");
 				for (String url : urls) {
 					if (antPathMatcher.match(url, request.getRequestURI())) {

@@ -1,4 +1,4 @@
-package com.meicloud.mall.controller;
+package com.meicloud.security.mall.controller;
 
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;

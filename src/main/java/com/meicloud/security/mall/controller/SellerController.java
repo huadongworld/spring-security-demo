@@ -1,4 +1,4 @@
-package com.meicloud.mall.controller;
+package com.meicloud.security.mall.controller;
 
 import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,7 +23,7 @@ public class SellerController {
      * @return
      */
     @GetMapping("/order:receive")
-    @RolesAllowed("SELLER")
+    @Secured("SELLER")
     public String receiveOrder() {
         return "卖家接单啦！";
     }

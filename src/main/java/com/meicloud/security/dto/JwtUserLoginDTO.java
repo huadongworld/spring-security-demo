@@ -113,6 +113,8 @@ public class JwtUserLoginDTO implements Serializable {
         JwtUserLoginDTO jwtUserLoginDTO = new JwtUserLoginDTO();
         jwtUserLoginDTO.setUserId(userId);
         jwtUserLoginDTO.setMobile(mobile);
+        jwtUserLoginDTO.setNickname(nickname);
+        jwtUserLoginDTO.setRoleName(roleName);
 
         return jwtUserLoginDTO;
     }

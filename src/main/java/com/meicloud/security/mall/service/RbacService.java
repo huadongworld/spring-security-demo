@@ -1,4 +1,4 @@
-package com.meicloud.mall.service;
+package com.meicloud.security.mall.service;
 
 import javax.servlet.http.HttpServletRequest;
 

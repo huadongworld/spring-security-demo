@@ -43,9 +43,10 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.antMatchers(securityConfig.getAnonymousUrls()).permitAll()
 				// 买家接口需要 “ROLE_BUYER” 角色权限才能访问
 				.antMatchers("/buyer/**").hasRole("BUYER")
-//				.anyRequest().access("@rbacService.hasPermission(request, this)")
-				// 其他URL需要认证通过才能访问后台资源
-				.anyRequest().authenticated()
+				// 其他任何请求满足 rbacService.hasPermission() 方法返回true时，能够访问
+				.anyRequest().access("@rbacService.hasPermission(request, authentication)")
+				// 其他URL一律拒绝访问
+//				.anyRequest().denyAll()
 				.and()
 				// 禁用跨站点伪造请求
 				.csrf().disable()
