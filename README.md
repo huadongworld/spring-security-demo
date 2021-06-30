@@ -60,8 +60,8 @@ public class DemoApplication {
  =========|_|==============|___/=/_/_/_/
  :: Spring Boot ::        (v1.5.9.RELEASE)
 
-2021-04-24 10:38:10.193  INFO 7684 --- [           main] com.meicloud.security.DemoApplication    : Starting DemoApplication on DESKTOP-T2KEH3M with PID 7684 (C:\Users\85176\Desktop\spring-security-demo\target\classes started by 85176 in C:\Users\85176\Desktop\spring-security-demo)
-2021-04-24 10:38:10.195  INFO 7684 --- [           main] com.meicloud.security.DemoApplication    : No active profile set, falling back to default profiles: default
+2021-04-24 10:38:10.193  INFO 7684 --- [           main] com.meicloud.DemoApplication    : Starting DemoApplication on DESKTOP-T2KEH3M with PID 7684 (C:\Users\85176\Desktop\spring-security-demo\target\classes started by 85176 in C:\Users\85176\Desktop\spring-security-demo)
+2021-04-24 10:38:10.195  INFO 7684 --- [           main] com.meicloud.DemoApplication    : No active profile set, falling back to default profiles: default
 2021-04-24 10:38:10.237  INFO 7684 --- [           main] ationConfigEmbeddedWebApplicationContext : Refreshing org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6d4d66d2: startup date [Sat Apr 24 10:38:10 CST 2021]; root of context hierarchy
 2021-04-24 10:38:11.337  INFO 7684 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat initialized with port(s): 8080 (http)
 2021-04-24 10:38:11.347  INFO 7684 --- [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
@@ -75,7 +75,7 @@ public class DemoApplication {
 2021-04-24 10:38:11.680  INFO 7684 --- [ost-startStop-1] .s.DelegatingFilterProxyRegistrationBean : Mapping filter: 'springSecurityFilterChain' to: [/*]
 2021-04-24 10:38:11.680  INFO 7684 --- [ost-startStop-1] o.s.b.w.servlet.ServletRegistrationBean  : Mapping servlet: 'dispatcherServlet' to [/]
 2021-04-24 10:38:11.963  INFO 7684 --- [           main] s.w.s.m.m.a.RequestMappingHandlerAdapter : Looking for @ControllerAdvice: org.springframework.boot.context.embedded.AnnotationConfigEmbeddedWebApplicationContext@6d4d66d2: startup date [Sat Apr 24 10:38:10 CST 2021]; root of context hierarchy
-2021-04-24 10:38:12.043  INFO 7684 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello],methods=[GET]}" onto public java.lang.String com.meicloud.security.DemoApplication.hello()
+2021-04-24 10:38:12.043  INFO 7684 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/hello],methods=[GET]}" onto public java.lang.String com.meicloud.DemoApplication.hello()
 2021-04-24 10:38:12.047  INFO 7684 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error]}" onto public org.springframework.http.ResponseEntity<java.util.Map<java.lang.String, java.lang.Object>> org.springframework.boot.autoconfigure.web.BasicErrorController.error(javax.servlet.http.HttpServletRequest)
 2021-04-24 10:38:12.048  INFO 7684 --- [           main] s.w.s.m.m.a.RequestMappingHandlerMapping : Mapped "{[/error],produces=[text/html]}" onto public org.springframework.web.servlet.ModelAndView org.springframework.boot.autoconfigure.web.BasicErrorController.errorHtml(javax.servlet.http.HttpServletRequest,javax.servlet.http.HttpServletResponse)
 2021-04-24 10:38:12.101  INFO 7684 --- [           main] o.s.w.s.handler.SimpleUrlHandlerMapping  : Mapped URL path [/webjars/**] onto handler of type [class org.springframework.web.servlet.resource.ResourceHttpRequestHandler]
@@ -89,7 +89,7 @@ Using default security password: 03deaaa0-d17f-445a-abf0-f21b2a6cf554
 2021-04-24 10:38:12.522  INFO 7684 --- [           main] o.s.s.web.DefaultSecurityFilterChain     : Creating filter chain: OrRequestMatcher [requestMatchers=[Ant [pattern='/**']]], [org.springframework.security.web.context.request.async.WebAsyncManagerIntegrationFilter@3e15bb06, org.springframework.security.web.context.SecurityContextPersistenceFilter@2cfa2c4f, org.springframework.security.web.header.HeaderWriterFilter@66c38e51, org.springframework.security.web.authentication.logout.LogoutFilter@5fe7f967, org.springframework.security.web.authentication.www.BasicAuthenticationFilter@3f049056, org.springframework.security.web.savedrequest.RequestCacheAwareFilter@48eb9836, org.springframework.security.web.servletapi.SecurityContextHolderAwareRequestFilter@79d06bbd, org.springframework.security.web.authentication.AnonymousAuthenticationFilter@6778aea6, org.springframework.security.web.session.SessionManagementFilter@12968227, org.springframework.security.web.access.ExceptionTranslationFilter@58cf8f94, org.springframework.security.web.access.intercept.FilterSecurityInterceptor@27b45ea]
 2021-04-24 10:38:12.664  INFO 7684 --- [           main] o.s.j.e.a.AnnotationMBeanExporter        : Registering beans for JMX exposure on startup
 2021-04-24 10:38:12.716  INFO 7684 --- [           main] s.b.c.e.t.TomcatEmbeddedServletContainer : Tomcat started on port(s): 8080 (http)
-2021-04-24 10:38:12.720  INFO 7684 --- [           main] com.meicloud.security.DemoApplication    : Started DemoApplication in 2.804 seconds (JVM running for 5.014)
+2021-04-24 10:38:12.720  INFO 7684 --- [           main] com.meicloud.DemoApplication    : Started DemoApplication in 2.804 seconds (JVM running for 5.014)
 ```
 - 访问接口 `http://localhost:8080/hello`，能弹出这个登录框就说明项目已经被Spring Security应用了，其实这个登录认证使用的是默认的登录过滤器，末尾放出相关源码文章，如果有兴趣可以了解了解是怎么配置的默认过滤器。
 ![登录页面](https://img-blog.csdnimg.cn/20210424113114956.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3FxXzM2MjIxNzg4,size_16,color_FFFFFF,t_70)

@@ -38,11 +38,11 @@ public class SecurityConfig {
     /**
      * 配置白名单（比如登录接口）
      */
-    protected String[] permitUrls = Arrays.asList("/user/login").toArray(new String[1]);
+    protected String[] permitUrls = new String[]{"/user/login", "/sentinel/**"};
 
     /**
      * 匿名访问的URL，即不用登录也可以访问（比如广告接口）
      */
-    protected String[] anonymousUrls = Arrays.asList("/ad").toArray(new String[1]);
+    protected String[] anonymousUrls = new String[]{"/ad"};
 
 }

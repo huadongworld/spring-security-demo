@@ -1,5 +1,6 @@
 package com.meicloud.security.config;
 
+import com.alibaba.csp.sentinel.cluster.ClusterStateManager;
 import com.meicloud.security.provider.JwtAuthenticationProvider;
 import com.meicloud.security.provider.UserAuthenticationProvider;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,6 +74,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 				.sessionManagement().disable()
 				// 禁用SecurityContext，这个配置器实际上认证信息会保存在Session中，但我们并不用Session机制，所以也禁用
 				.securityContext().disable();
+
+		this.sentinelConfig();
+	}
+
+	private void sentinelConfig() {
+		// 指定当前身份为 Token Client
+		ClusterStateManager.applyState(ClusterStateManager.CLUSTER_CLIENT);
 	}
 
 	@Override
