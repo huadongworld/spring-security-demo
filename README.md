@@ -439,9 +439,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 - 如果想深入了解 Spring Security 源码，使用的时候为什么需要继承各种类接口，请参考：
 
 > [《Spring Security源码（一）：整体框架设计》](https://blog.csdn.net/qq_36221788/article/details/115469412)
-[《Spring Security源码（二）：建造者详解》](https://blog.csdn.net/qq_36221788/article/details/115490292)
-[《Spring Security源码（三）：HttpSecurity详解》](https://blog.csdn.net/qq_36221788/article/details/115497887)
-[《Spring Security源码（四）：配置器详解》](https://blog.csdn.net/qq_36221788/article/details/115840807)
-[《Spring Security源码（五）：FilterChainProxy是如何创建的？》](https://blog.csdn.net/qq_36221788/article/details/115872754)
-[《Spring Security源码（六）：FilterChainProxy是如何运行的？》](https://blog.csdn.net/qq_36221788/article/details/115918728)
-[《Spring Security源码（七）：设计模式在框架中的应用》](https://blog.csdn.net/qq_36221788/article/details/115918737)
+> [《Spring Security源码（二）：建造者详解》](https://blog.csdn.net/qq_36221788/article/details/115490292)
+> [《Spring Security源码（三）：HttpSecurity详解》](https://blog.csdn.net/qq_36221788/article/details/115497887)
+> [《Spring Security源码（四）：配置器详解》](https://blog.csdn.net/qq_36221788/article/details/115840807)
+> [《Spring Security源码（五）：FilterChainProxy是如何创建的？》](https://blog.csdn.net/qq_36221788/article/details/115872754)
+> [《Spring Security源码（六）：FilterChainProxy是如何运行的？》](https://blog.csdn.net/qq_36221788/article/details/115918728)
+> [《Spring Security源码（七）：设计模式在框架中的应用》](https://blog.csdn.net/qq_36221788/article/details/115918737)
